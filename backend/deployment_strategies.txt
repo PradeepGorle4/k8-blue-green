@@ -1,0 +1,48 @@
+<!-- | Feature | Rolling Update | Blue-Green Deployment | Canary Deployment | 
+| Downtime | None | None | None | 
+| Rollback | Medium complexity | Instant | Easy (if automated) | 
+| Traffic Control | No | Full switch | Fine-grained | 
+| Resource Usage | Efficient | High (double infra) | Moderate | 
+| Risk Mitigation | Medium | High | Very High | 
+| Setup Complexity | Low | Medium | High |  -->
+-------------------------------------------------------------------------------------------
+
+<!-- 🧠 So, which is better?
+- Rolling is great for simple, low-risk updates where rollback isn’t a big concern.
+- Blue-Green is ideal when you want zero-downtime + instant rollback.
+- Canary is best when you need gradual exposure + real-time monitoring.
+If you're just getting started or deploying frequently, Rolling is a solid default. But if you're deploying critical changes or want more control, Canary or Blue-Green might be worth the extra setup. -->
+----------------------------------------------------------------------------------------------------------
+
+<!-- 🟦 Blue-Green Deployment
+Pros:
+- Simple to implement.
+- Instant rollback by switching traffic back to the old environment.
+- Great for minimizing downtime.
+Cons:
+- Requires double the infrastructure (two full environments).
+- Not ideal for gradual exposure or real-time feedback.
+🐤 Canary Deployment
+Pros:
+- Fine-grained control over traffic (e.g., 5%, 25%, 50%).
+- Real-time monitoring and rollback based on metrics.
+- Ideal for frequent, low-risk releases.
+Cons:
+- More complex to set up (especially traffic routing).
+- Requires robust observability and automation.
+So, which is better?
+- Choose Blue-Green if you want simplicity and can afford the extra resources.
+- Choose Canary if you want progressive delivery, real-time validation, and minimal blast radius.
+You can even combine them—start with Blue-Green for staging, then use Canary for production rollout.
+------------------------------------------------------------------------------------------------------------
+
+That’s a classic DevOps debate, GORLE! Let’s break it down so you can pick the right strategy for your use case.
+🔄 Rolling Update
+How it works: Gradually replaces old pods with new ones, one at a time (or in batches), ensuring some instances are always available.
+Pros:
+- No downtime.
+- Simple to configure in Kubernetes (strategy: RollingUpdate is the default).
+- Doesn’t require duplicate environments.
+Cons:
+- Harder to roll back—if something breaks mid-deploy, you may already have a mix of versions running.
+- No traffic control—users may hit either version during rollout. -->
