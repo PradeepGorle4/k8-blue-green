@@ -1,0 +1,9 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding # Basically, we are binding the frontend pods to target group.
+metadata:
+   name: frontend
+spec:
+  serviceRef:
+    name: frontend # route traffic to frontend service
+    port: 80
+  targetGroupARN: arn:aws:elasticloadbalancing:us-east-1:090808669085:targetgroup/expense-dev-frontend/66b128e6c4406848
